@@ -91,7 +91,6 @@ namespace TicTacToe.Tests
         }
 
         [Fact]
-
         public void IsBoardFullTest()
         {
             // Create a Test Object
@@ -145,6 +144,463 @@ namespace TicTacToe.Tests
 
             // Assert That The Board Is Not Full
             Assert.False(board.IsBoardFull());
+        }
+
+        [Fact]
+        public void IsWinnerTest()
+        {
+            // Create a Test Object
+            Board board = new Board();
+
+            // Test All Possible Winning Combinations
+
+            /* ----------------------------------
+            * Combination 1: Horizontal Top Row X
+            * -----------------------------------
+            *    X | X | X
+            *   -----------
+            *      | O |  
+            *   -----------
+            *    O |   | O
+            */
+            board.MakeMove('X', 0, 0);
+            board.MakeMove('X', 0, 1);
+            board.MakeMove('X', 0, 2);
+            board.MakeMove('\0', 1, 0);
+            board.MakeMove('O', 1, 1);
+            board.MakeMove('\0', 1, 2);
+            board.MakeMove('O', 2, 0);
+            board.MakeMove('\0', 2, 1);
+            board.MakeMove('O', 2, 2);
+
+            // Expect That X Is The Winner
+            Assert.True(board.IsWinner('X'));
+
+            // Expect That O Is Not The Winner
+            Assert.False(board.IsWinner('O'));
+
+            // Clear The Board
+            board.ClearBoard();
+
+            /* ----------------------------------
+            * Combination 2: Horizontal Top Row O
+            * -----------------------------------
+            *    O | O | O
+            *   -----------
+            *      | X |  
+            *   -----------
+            *    X |   | X
+            */
+            board.MakeMove('O', 0, 0);
+            board.MakeMove('O', 0, 1);
+            board.MakeMove('O', 0, 2);
+            board.MakeMove('\0', 1, 0);
+            board.MakeMove('X', 1, 1);
+            board.MakeMove('\0', 1, 2);
+            board.MakeMove('X', 2, 0);
+            board.MakeMove('\0', 2, 1);
+            board.MakeMove('X', 2, 2);
+
+            // Expect That O Is The Winner
+            Assert.True(board.IsWinner('O'));
+
+            // Expect That X Is Not The Winner
+            Assert.False(board.IsWinner('X'));
+
+            // Clear The Board
+            board.ClearBoard();
+
+            /*--------------------------------------
+            * Combination 3: Horizontal Middle Row X
+            * --------------------------------------
+            *      | O |  
+            *   -----------
+            *    X | X | X
+            *   -----------
+            *    O |   | O
+            */
+            board.MakeMove('\0', 0, 0);
+            board.MakeMove('O', 0, 1);
+            board.MakeMove('\0', 0, 2);
+            board.MakeMove('X', 1, 0);
+            board.MakeMove('X', 1, 1);
+            board.MakeMove('X', 1, 2);
+            board.MakeMove('O', 2, 0);
+            board.MakeMove('\0', 2, 1);
+            board.MakeMove('O', 2, 2);
+
+            // Expect That X Is The Winner
+            Assert.True(board.IsWinner('X'));
+
+            // Expect That O Is Not The Winner
+            Assert.False(board.IsWinner('O'));
+
+            // Clear The Board
+            board.ClearBoard();
+
+            /* -------------------------------------
+            * Combination 4: Horizontal Middle Row O
+            * --------------------------------------
+            *      | X |  
+            *   -----------
+            *    O | O | O
+            *   -----------
+            *    X |   | X
+            */
+            board.MakeMove('\0', 0, 0);
+            board.MakeMove('X', 0, 1);
+            board.MakeMove('\0', 0, 2);
+            board.MakeMove('O', 1, 0);
+            board.MakeMove('O', 1, 1);
+            board.MakeMove('O', 1, 2);
+            board.MakeMove('X', 2, 0);
+            board.MakeMove('\0', 2, 1);
+            board.MakeMove('X', 2, 2);
+
+            // Expect That O Is The Winner
+            Assert.True(board.IsWinner('O'));
+
+            // Expect That X Is Not The Winner
+            Assert.False(board.IsWinner('X'));
+
+            // Clear The Board
+            board.ClearBoard();
+
+            /* -------------------------------------
+            * Combination 5: Horizontal Bottom Row X
+            * --------------------------------------
+            *      | O |  
+            *   -----------
+            *    O |   | O
+            *   -----------
+            *    X | X | X
+            */
+            board.MakeMove('\0', 0, 0);
+            board.MakeMove('O', 0, 1);
+            board.MakeMove('\0', 0, 2);
+            board.MakeMove('O', 1, 0);
+            board.MakeMove('\0', 1, 1);
+            board.MakeMove('O', 1, 2);
+            board.MakeMove('X', 2, 0);
+            board.MakeMove('X', 2, 1);
+            board.MakeMove('X', 2, 2);
+
+            // Expect That X Is The Winner
+            Assert.True(board.IsWinner('X'));
+
+            // Expect That O Is Not The Winner
+            Assert.False(board.IsWinner('O'));
+
+            // Clear The Board
+            board.ClearBoard();
+
+            /* -------------------------------------
+            * Combination 6: Horizontal Bottom Row O
+            * --------------------------------------
+            *      | X |  
+            *   -----------
+            *    X |   | X
+            *   -----------
+            *    O | O | O
+            */
+            board.MakeMove('\0', 0, 0);
+            board.MakeMove('X', 0, 1);
+            board.MakeMove('\0', 0, 2);
+            board.MakeMove('X', 1, 0);
+            board.MakeMove('\0', 1, 1);
+            board.MakeMove('X', 1, 2);
+            board.MakeMove('O', 2, 0);
+            board.MakeMove('O', 2, 1);
+            board.MakeMove('O', 2, 2);
+
+            // Expect That O Is The Winner
+            Assert.True(board.IsWinner('O'));
+
+            // Expect That X Is Not The Winner
+            Assert.False(board.IsWinner('X'));
+
+            // Clear The Board
+            board.ClearBoard();
+
+            /* ------------------------------------
+            * Combination 7: Vertical Left column X
+            * -------------------------------------
+            *    X | O | O
+            *   -----------
+            *    X | O | X
+            *   -----------
+            *    X | X | O
+            */
+            board.MakeMove('X', 0, 0);
+            board.MakeMove('O', 0, 1);
+            board.MakeMove('O', 0, 2);
+            board.MakeMove('X', 1, 0);
+            board.MakeMove('O', 1, 1);
+            board.MakeMove('X', 1, 2);
+            board.MakeMove('X', 2, 0);
+            board.MakeMove('X', 2, 1);
+            board.MakeMove('O', 2, 2);
+
+            // Expect That X Is The Winner
+            Assert.True(board.IsWinner('X'));
+
+            // Expect That O Is Not The Winner
+            Assert.False(board.IsWinner('O'));
+
+            // Clear The Board
+            board.ClearBoard();
+
+            /* ------------------------------------
+            * Combination 8: Vertical Left column O
+            * -------------------------------------
+            *    O | X | X
+            *   -----------
+            *    O | X | O
+            *   -----------
+            *    O | O | X
+            */
+            board.MakeMove('O', 0, 0);
+            board.MakeMove('X', 0, 1);
+            board.MakeMove('X', 0, 2);
+            board.MakeMove('O', 1, 0);
+            board.MakeMove('X', 1, 1);
+            board.MakeMove('O', 1, 2);
+            board.MakeMove('O', 2, 0);
+            board.MakeMove('O', 2, 1);
+            board.MakeMove('X', 2, 2);
+
+            // Expect That O Is The Winner
+            Assert.True(board.IsWinner('O'));
+
+            // Expect That X Is Not The Winner
+            Assert.False(board.IsWinner('X'));
+
+            // Clear The Board
+            board.ClearBoard();
+
+            /* --------------------------------------
+            * Combination 9: Vertical Middle column X
+            * ---------------------------------------
+            *    O | X | O
+            *   -----------
+            *    X | X | O
+            *   -----------
+            *    O | X | X
+            */
+            board.MakeMove('O', 0, 0);
+            board.MakeMove('X', 0, 1);
+            board.MakeMove('O', 0, 2);
+            board.MakeMove('X', 1, 0);
+            board.MakeMove('X', 1, 1);
+            board.MakeMove('O', 1, 2);
+            board.MakeMove('O', 2, 0);
+            board.MakeMove('X', 2, 1);
+            board.MakeMove('X', 2, 2);
+           
+            // Expect That X Is The Winner
+            Assert.True(board.IsWinner('X'));
+
+            // Expect That O Is Not The Winner
+            Assert.False(board.IsWinner('O'));
+
+            // Clear The Board
+            board.ClearBoard();
+
+            /* ---------------------------------------
+            * Combination 10: Vertical Middle column O
+            * ----------------------------------------
+            *    X | O | X
+            *   -----------
+            *    O | O | X
+            *   -----------
+            *    X | O | O
+            */
+            board.MakeMove('X', 0, 0);
+            board.MakeMove('O', 0, 1);
+            board.MakeMove('X', 0, 2);
+            board.MakeMove('O', 1, 0);
+            board.MakeMove('O', 1, 1);
+            board.MakeMove('X', 1, 2);
+            board.MakeMove('X', 2, 0);
+            board.MakeMove('O', 2, 1);
+            board.MakeMove('O', 2, 2);
+
+            // Expect That O Is The Winner
+            Assert.True(board.IsWinner('O'));
+
+            // Expect That X Is Not The Winner
+            Assert.False(board.IsWinner('X'));
+
+            // Clear The Board
+            board.ClearBoard();
+
+            /* --------------------------------------
+            * Combination 11: Vertical Right column X
+            * ---------------------------------------
+            *    O | O | X
+            *   -----------
+            *    X | O | X
+            *   -----------
+            *    O | X | X
+            */
+            board.MakeMove('O', 0, 0);
+            board.MakeMove('O', 0, 1);
+            board.MakeMove('X', 0, 2);
+            board.MakeMove('X', 1, 0);
+            board.MakeMove('O', 1, 1);
+            board.MakeMove('X', 1, 2);
+            board.MakeMove('O', 2, 0);
+            board.MakeMove('X', 2, 1);
+            board.MakeMove('X', 2, 2);
+
+            // Expect That X Is The Winner
+            Assert.True(board.IsWinner('X'));
+
+            // Expect That O Is Not The Winner
+            Assert.False(board.IsWinner('O'));
+
+            // Clear The Board
+            board.ClearBoard();
+
+            /* --------------------------------------
+            * Combination 12: Vertical Right column O
+            * ---------------------------------------
+            *    X | X | O
+            *   -----------
+            *    O | X | O
+            *   -----------
+            *    X | O | O
+            */
+            board.MakeMove('X', 0, 0);
+            board.MakeMove('X', 0, 1);
+            board.MakeMove('O', 0, 2);
+            board.MakeMove('O', 1, 0);
+            board.MakeMove('X', 1, 1);
+            board.MakeMove('O', 1, 2);
+            board.MakeMove('X', 2, 0);
+            board.MakeMove('O', 2, 1);
+            board.MakeMove('O', 2, 2);
+
+            // Expect That O Is The Winner
+            Assert.True(board.IsWinner('O'));
+
+            // Expect That X Is Not The Winner
+            Assert.False(board.IsWinner('X'));
+
+            // Clear The Board
+            board.ClearBoard();
+
+            /* ----------------------------------
+            * Combination 13: Diagonal Top Left X
+            * -----------------------------------
+            *    X | X | O
+            *   -----------
+            *    O | X | O
+            *   -----------
+            *    X | O | X
+            */
+            board.MakeMove('X', 0, 0);
+            board.MakeMove('X', 0, 1);
+            board.MakeMove('O', 0, 2);
+            board.MakeMove('O', 1, 0);
+            board.MakeMove('X', 1, 1);
+            board.MakeMove('O', 1, 2);
+            board.MakeMove('X', 2, 0);
+            board.MakeMove('O', 2, 1);
+            board.MakeMove('X', 2, 2);
+
+            // Expect That X Is The Winner
+            Assert.True(board.IsWinner('X'));
+
+            // Expect That O Is Not The Winner
+            Assert.False(board.IsWinner('O'));
+
+            // Clear The Board
+            board.ClearBoard();
+
+            /* ----------------------------------
+            * Combination 14: Diagonal Top Left O
+            * -----------------------------------
+            *    O | O | X
+            *   -----------
+            *    X | O | X
+            *   -----------
+            *    O | X | O
+            */
+            board.MakeMove('O', 0, 0);
+            board.MakeMove('O', 0, 1);
+            board.MakeMove('X', 0, 2);
+            board.MakeMove('X', 1, 0);
+            board.MakeMove('O', 1, 1);
+            board.MakeMove('X', 1, 2);
+            board.MakeMove('O', 2, 0);
+            board.MakeMove('X', 2, 1);
+            board.MakeMove('O', 2, 2);
+
+            // Expect That O Is The Winner
+            Assert.True(board.IsWinner('O'));
+            
+            // Expect That X Is Not The Winner
+            Assert.False(board.IsWinner('X'));
+
+            // Clear The Board
+            board.ClearBoard();
+
+            /* -----------------------------------
+            * Combination 15: Diagonal Top Right X
+            * ------------------------------------
+            *    O | O | X
+            *   -----------
+            *    O | X | O
+            *   -----------
+            *    X | O | X
+            */
+            board.MakeMove('O', 0, 0);
+            board.MakeMove('O', 0, 1);
+            board.MakeMove('X', 0, 2);
+            board.MakeMove('O', 1, 0);
+            board.MakeMove('X', 1, 1);
+            board.MakeMove('O', 1, 2);
+            board.MakeMove('X', 2, 0);
+            board.MakeMove('O', 2, 1);
+            board.MakeMove('X', 2, 2);
+
+            // Expect That X Is The Winner
+            Assert.True(board.IsWinner('X'));
+
+            // Expect That O Is Not The Winner
+            Assert.False(board.IsWinner('O'));
+
+            // Clear The Board
+            board.ClearBoard();
+
+            /* -----------------------------------
+            * Combination 16: Diagonal Top Right O
+            * ------------------------------------
+            *    X | X | O
+            *   -----------
+            *    X | O | X
+            *   -----------
+            *    O | X | O
+            */
+            board.MakeMove('X', 0, 0);
+            board.MakeMove('X', 0, 1);
+            board.MakeMove('O', 0, 2);
+            board.MakeMove('X', 1, 0);
+            board.MakeMove('O', 1, 1);
+            board.MakeMove('X', 1, 2);
+            board.MakeMove('O', 2, 0);
+            board.MakeMove('X', 2, 1);
+            board.MakeMove('O', 2, 2);
+
+            // Expect That O Is The Winner
+            Assert.True(board.IsWinner('O'));
+
+            // Expect That X Is Not The Winner
+            Assert.False(board.IsWinner('X'));
+
+            // Clear The Board
+            board.ClearBoard();
         }
     }
 }
