@@ -10,10 +10,10 @@ namespace TicTacToe.Tests
             Player testPlayer2 = new Player();
 
             // Assertions
-            Assert.True(testPlayer1.getUsername() == "Bob");
-            Assert.True(testPlayer1.getSymbol() == 'X');
-            Assert.True(testPlayer2.getUsername() == "");
-            Assert.True(testPlayer2.getSymbol() == '\0');
+            Assert.True(testPlayer1.GetUsername() == "Bob");
+            Assert.True(testPlayer1.GetSymbol() == 'X');
+            Assert.True(testPlayer2.GetUsername() == "");
+            Assert.True(testPlayer2.GetSymbol() == '\0');
         }
 
         [Fact]
@@ -23,11 +23,11 @@ namespace TicTacToe.Tests
             Player testPlayer = new Player();
 
             // Set The Username
-            testPlayer.setUsername("test");
+            testPlayer.SetUsername("test");
 
             // Assertions
-            Assert.Equal("test", testPlayer.getUsername());
-            Assert.Equal('\0', testPlayer.getSymbol());
+            Assert.Equal("test", testPlayer.GetUsername());
+            Assert.Equal('\0', testPlayer.GetSymbol());
         }
 
         [Fact]
@@ -37,12 +37,55 @@ namespace TicTacToe.Tests
             Player testPlayer = new Player();
 
             // Set The Symbol
-            testPlayer.setSymbol('O');
+            testPlayer.SetSymbol('O');
 
             // Assertions
-            Assert.Equal("", testPlayer.getUsername());
-            Assert.Equal('O', testPlayer.getSymbol());
+            Assert.Equal("", testPlayer.GetUsername());
+            Assert.Equal('O', testPlayer.GetSymbol());
         }
 
+        [Fact]
+        public void IncrementWinsTest()
+        {
+            // Create Test Object
+            Player player = new Player();
+
+            // Assert Default Values
+            Assert.Equal("", player.GetUsername());
+            Assert.Equal('\0', player.GetSymbol());
+            Assert.Equal(0, player.GetWins());
+            Assert.Equal(0, player.GetLosses());
+
+            // Increment Wins
+            player.IncrementWins();
+
+            // Verify That Wins Incremented and Didn't Change Other Values
+            Assert.Equal("", player.GetUsername());
+            Assert.Equal('\0', player.GetSymbol());
+            Assert.Equal(1, player.GetWins());
+            Assert.Equal(0, player.GetLosses());
+        }
+
+        [Fact]
+        public void IncrementLossesTest()
+        {
+            // Create Test Object
+            Player player = new Player();
+
+            // Assert Default Values
+            Assert.Equal("", player.GetUsername());
+            Assert.Equal('\0', player.GetSymbol());
+            Assert.Equal(0, player.GetWins());
+            Assert.Equal(0, player.GetLosses());
+
+            // Increment Losses
+            player.IncrementLosses();
+
+            // Verify That Wins Incremented and Didn't Change Other Values
+            Assert.Equal("", player.GetUsername());
+            Assert.Equal('\0', player.GetSymbol());
+            Assert.Equal(0, player.GetWins());
+            Assert.Equal(1, player.GetLosses());
+        }
     }
 }
