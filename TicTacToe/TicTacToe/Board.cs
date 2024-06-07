@@ -76,7 +76,10 @@ namespace TicTacToe
 
         public bool IsDraw()
         {
-            // Function Should Check If The Board Is Full and There Are No Winners
+            if (IsBoardFull() && !IsWinner('X') && !IsWinner('O'))
+            {
+                return true;
+            }
             return false;
         }
     }
