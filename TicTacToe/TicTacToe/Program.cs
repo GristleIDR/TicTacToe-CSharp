@@ -1,12 +1,6 @@
-﻿// welcome message to the user
-Console.WriteLine("Hello! Welcome To My Practice TicTacToe Game In C# \n");
-Console.WriteLine("Please Enter Your Name: \n");
+﻿using TicTacToe;
 
-// take user input for name
-string name = Console.ReadLine();
 
-// welcome message to the user by name
-Console.WriteLine("\n Hello " + name + "! " + "Lets Play! \n");
+Game game = new Game();
 
-// display the board
-Console.WriteLine("     |   |     \n ------------- \n     |   |     \n ------------- \n     |   |     \n");
+game.PlayGame();

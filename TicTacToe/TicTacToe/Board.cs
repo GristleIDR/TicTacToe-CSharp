@@ -8,7 +8,7 @@ namespace TicTacToe
 {
     public class Board
     {
-        public char[,] board = { { '\0', '\0', '\0' }, { '\0', '\0', '\0' }, { '\0', '\0', '\0' }, };
+        private char[,] board = { { '\0', '\0', '\0' }, { '\0', '\0', '\0' }, { '\0', '\0', '\0' }, };
 
         public void MakeMove(char p, int x, int y)
         {
@@ -18,8 +18,21 @@ namespace TicTacToe
 
         public void PrintBoard()
         {
-            // display the board
-            Console.WriteLine(this.board[0,0] + " | " + this.board[0,1] + " | " + this.board[0,2] + "\n-------------\n" + this.board[1,0] + " | " + this.board[1,1] + " | " + this.board[1,2] + "\n-------------\n" + this.board[2,0] + " | " + this.board[2,1] + " | " + this.board[2,2]);
+            // Helper method to format the cell content
+            string FormatCell(char cell)
+            {
+                return cell == '\0' ? " " : cell.ToString();
+            }
+
+            // Display the board with formatting adjustments
+            Console.WriteLine("  Y\n" +
+                              "2 |  " + FormatCell(this.board[0, 0]) + " | " + FormatCell(this.board[0, 1]) + " | " + FormatCell(this.board[0, 2]) +
+                              "\n  | -----------\n" +
+                              "1 |  " + FormatCell(this.board[1, 0]) + " | " + FormatCell(this.board[1, 1]) + " | " + FormatCell(this.board[1, 2]) +
+                              "\n  | -----------\n" +
+                              "0 |  " + FormatCell(this.board[2, 0]) + " | " + FormatCell(this.board[2, 1]) + " | " + FormatCell(this.board[2, 2]) +
+                              "\n  -------------- X\n" +
+                              "     0   1   2");
         }
 
         public void ClearBoard()
