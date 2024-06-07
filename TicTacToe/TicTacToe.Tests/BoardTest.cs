@@ -602,5 +602,119 @@ namespace TicTacToe.Tests
             // Clear The Board
             board.ClearBoard();
         }
+
+        [Fact]
+        public void IsDrawTest()
+        {
+            // Create a Test Object
+            Board board = new Board();
+
+            // Assert That The Game Is Not A Draw
+            // The Board Is Empty
+            /*
+            *      |   |  
+            *   -----------
+            *      |   |  
+            *   -----------
+            *      |   |  
+            */
+            Assert.False(board.IsDraw());
+
+            // Board Is Full But No Winner Variation 1
+            /*
+            *    X | O | X
+            *   -----------
+            *    O | O | X
+            *   -----------
+            *    O | X | O
+            */
+            board.MakeMove('X', 0, 0);
+            board.MakeMove('O', 0, 1);
+            board.MakeMove('X', 0, 2);
+            board.MakeMove('O', 1, 0);
+            board.MakeMove('O', 1, 1);
+            board.MakeMove('X', 1, 2);
+            board.MakeMove('O', 2, 0);
+            board.MakeMove('X', 2, 1);
+            board.MakeMove('O', 2, 2);
+
+            // Assert That The Game Is A Draw
+            Assert.True(board.IsDraw());
+
+            // Clear The Board
+            board.ClearBoard();
+
+            // Board Is Full But No Winner Variation 2
+            /*
+            *    X | O | X
+            *   -----------
+            *    X | O | O
+            *   -----------
+            *    O | X | O
+            */
+            board.MakeMove('X', 0, 0);
+            board.MakeMove('O', 0, 1);
+            board.MakeMove('X', 0, 2);
+            board.MakeMove('X', 1, 0);
+            board.MakeMove('O', 1, 1);
+            board.MakeMove('O', 1, 2);
+            board.MakeMove('O', 2, 0);
+            board.MakeMove('X', 2, 1);
+            board.MakeMove('O', 2, 2);
+
+            // Assert That The Game Is A Draw
+            Assert.True(board.IsDraw());
+
+            // Clear The Board
+            board.ClearBoard();
+
+            // Board Is Full But No Winner Variation 3
+            /*
+            *    X | X | O
+            *   -----------
+            *    O | X | X
+            *   -----------
+            *    X | O | O
+            */
+            board.MakeMove('X', 0, 0);
+            board.MakeMove('X', 0, 1);
+            board.MakeMove('O', 0, 2);
+            board.MakeMove('O', 1, 0);
+            board.MakeMove('X', 1, 1);
+            board.MakeMove('X', 1, 2);
+            board.MakeMove('X', 2, 0);
+            board.MakeMove('O', 2, 1);
+            board.MakeMove('O', 2, 2);
+
+            // Assert That The Game Is A Draw
+            Assert.True(board.IsDraw());
+
+            // Clear The Board
+            board.ClearBoard();
+
+            // Board Is Full But There Is a Winner
+            /*
+            *    X | O | X
+            *   -----------
+            *    O | O | X
+            *   -----------
+            *    O | X | X
+            */
+            board.MakeMove('X', 0, 0);
+            board.MakeMove('O', 0, 1);
+            board.MakeMove('X', 0, 2);
+            board.MakeMove('O', 1, 0);
+            board.MakeMove('O', 1, 1);
+            board.MakeMove('X', 1, 2);
+            board.MakeMove('O', 2, 0);
+            board.MakeMove('X', 2, 1);
+            board.MakeMove('X', 2, 2);
+
+            // Assert That The Game Is Not A Draw
+            Assert.False(board.IsDraw());
+
+            // Clear The Board
+            board.ClearBoard();
+        }
     }
 }
