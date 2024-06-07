@@ -51,7 +51,26 @@ namespace TicTacToe
 
         public bool IsWinner(char p)
         {
-            // Function Should Check Win Condition For Passed Character ... X or O
+            // Check For Horizontal Wins
+            if ((this.GetPosition(0, 0) == p && this.GetPosition(0, 1) == p && this.GetPosition(0, 2) == p) ||
+                (this.GetPosition(1, 0) == p && this.GetPosition(1, 1) == p && this.GetPosition(1, 2) == p) ||
+                (this.GetPosition(2, 0) == p && this.GetPosition(2, 1) == p && this.GetPosition(2, 2) == p))
+            {
+                return true;
+            }
+            // Check For Vertical Wins
+            else if ((this.GetPosition(0, 0) == p && this.GetPosition(1, 0) == p && this.GetPosition(2, 0) == p) ||
+                     (this.GetPosition(0, 1) == p && this.GetPosition(1, 1) == p && this.GetPosition(2, 1) == p) ||
+                     (this.GetPosition(0, 2) == p && this.GetPosition(1, 2) == p && this.GetPosition(2, 2) == p))
+            {
+                return true;
+            }
+            // Check For Diagonal Wins
+            else if ((this.GetPosition(0, 0) == p && this.GetPosition(1, 1) == p && this.GetPosition(2, 2) == p) ||
+                     (this.GetPosition(0, 2) == p && this.GetPosition(1, 1) == p && this.GetPosition(2, 0) == p))
+            {
+                return true;
+            } 
             return false;
         }
 
