@@ -89,7 +89,7 @@ namespace TicTacToe
             Console.WriteLine("Player 2: " + player_2.GetUsername() + " - Symbol: " + player_2.GetSymbol());
 
             // Game Play
-            while (this.game_status != Status.Win || this.game_status != Status.Draw)
+            while (this.game_status == Status.InProgress)
             {
                 if (this.current_player == 1)
                 {
