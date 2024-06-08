@@ -41,11 +41,11 @@ namespace TicTacToe.Tests
             Board board = new Board();
 
             /* Test Fill The Board
-             *    X | O | X
+             *    X | X | X
              *   -----------
-             *    O | X | X
+             *    O | X | O
              *   -----------
-             *    O | O | X
+             *    X | O | O
             */
             board.MakeMove('X', 0, 0);
             board.MakeMove('O', 0, 1);
@@ -100,11 +100,11 @@ namespace TicTacToe.Tests
             Assert.False(board.IsBoardFull());
 
             /* Test Fill The Board
-             *    X | O | X
+             *    X | X | X
              *   -----------
-             *    O | X | X
+             *    O | X | O
              *   -----------
-             *    O | O | X
+             *    X | O | O
             */
             board.MakeMove('X', 0, 0);
             board.MakeMove('O', 0, 1);
@@ -126,11 +126,11 @@ namespace TicTacToe.Tests
             Assert.False(board.IsBoardFull());
 
             /* Partially Fill The Board
-             *    X |   | X
+             *    X | X | X
              *   -----------
-             *    O | X | X
+             *      | X | O
              *   -----------
-             *    O | O | X
+             *    X | O | O
             */
             board.MakeMove('X', 0, 0);
             board.MakeMove('\0', 0, 1);
@@ -154,14 +154,14 @@ namespace TicTacToe.Tests
 
             // Test All Possible Winning Combinations
 
-            /* ----------------------------------
-            * Combination 1: Horizontal Top Row X
-            * -----------------------------------
-            *    X | X | X
+            /* ------------------------------------
+            * Combination 1: Vertical Left Column X
+            * -------------------------------------
+            *    X |   | O
             *   -----------
-            *      | O |  
+            *    X | O |  
             *   -----------
-            *    O |   | O
+            *    X |   | O
             */
             board.MakeMove('X', 0, 0);
             board.MakeMove('X', 0, 1);
@@ -182,14 +182,14 @@ namespace TicTacToe.Tests
             // Clear The Board
             board.ClearBoard();
 
-            /* ----------------------------------
-            * Combination 2: Horizontal Top Row O
-            * -----------------------------------
-            *    O | O | O
+            /* ------------------------------------
+            * Combination 2: Vertical Left Column O
+            * -------------------------------------
+            *    O |   | X
             *   -----------
-            *      | X |  
+            *    O | X |  
             *   -----------
-            *    X |   | X
+            *    O |   | X
             */
             board.MakeMove('O', 0, 0);
             board.MakeMove('O', 0, 1);
@@ -210,14 +210,14 @@ namespace TicTacToe.Tests
             // Clear The Board
             board.ClearBoard();
 
-            /*--------------------------------------
-            * Combination 3: Horizontal Middle Row X
-            * --------------------------------------
-            *      | O |  
+            /*---------------------------------------
+            * Combination 3: Vertical Middle Column X
+            * ---------------------------------------
+            *      | X | O 
             *   -----------
-            *    X | X | X
+            *    O | X |  
             *   -----------
-            *    O |   | O
+            *      | X | O 
             */
             board.MakeMove('\0', 0, 0);
             board.MakeMove('O', 0, 1);
@@ -238,14 +238,14 @@ namespace TicTacToe.Tests
             // Clear The Board
             board.ClearBoard();
 
-            /* -------------------------------------
-            * Combination 4: Horizontal Middle Row O
-            * --------------------------------------
-            *      | X |  
+            /*---------------------------------------
+            * Combination 4: Vertical Middle Column O
+            * ---------------------------------------
+            *      | O | X
             *   -----------
-            *    O | O | O
+            *    X | O |  
             *   -----------
-            *    X |   | X
+            *      | O | X
             */
             board.MakeMove('\0', 0, 0);
             board.MakeMove('X', 0, 1);
@@ -267,13 +267,13 @@ namespace TicTacToe.Tests
             board.ClearBoard();
 
             /* -------------------------------------
-            * Combination 5: Horizontal Bottom Row X
+            * Combination 5: Vertical Right Column X
             * --------------------------------------
-            *      | O |  
+            *      | O | X 
             *   -----------
-            *    O |   | O
+            *    O |   | X
             *   -----------
-            *    X | X | X
+            *      | O | X
             */
             board.MakeMove('\0', 0, 0);
             board.MakeMove('O', 0, 1);
@@ -295,13 +295,13 @@ namespace TicTacToe.Tests
             board.ClearBoard();
 
             /* -------------------------------------
-            * Combination 6: Horizontal Bottom Row O
+            * Combination 6: Vertical Right Column O
             * --------------------------------------
-            *      | X |  
+            *      | X | O
             *   -----------
-            *    X |   | X
+            *    X |   | O
             *   -----------
-            *    O | O | O
+            *      | X | O
             */
             board.MakeMove('\0', 0, 0);
             board.MakeMove('X', 0, 1);
@@ -322,42 +322,42 @@ namespace TicTacToe.Tests
             // Clear The Board
             board.ClearBoard();
 
-            /* ------------------------------------
-            * Combination 7: Vertical Left column X
-            * -------------------------------------
-            *    X | O | O
-            *   -----------
-            *    X | O | X
-            *   -----------
-            *    X | X | O
-            */
-            board.MakeMove('X', 0, 0);
-            board.MakeMove('O', 0, 1);
-            board.MakeMove('O', 0, 2);
-            board.MakeMove('X', 1, 0);
-            board.MakeMove('O', 1, 1);
-            board.MakeMove('X', 1, 2);
-            board.MakeMove('X', 2, 0);
-            board.MakeMove('X', 2, 1);
-            board.MakeMove('O', 2, 2);
-
-            // Expect That X Is The Winner
-            Assert.True(board.IsWinner('X'));
-
-            // Expect That O Is Not The Winner
-            Assert.False(board.IsWinner('O'));
-
-            // Clear The Board
-            board.ClearBoard();
-
-            /* ------------------------------------
-            * Combination 8: Vertical Left column O
-            * -------------------------------------
-            *    O | X | X
-            *   -----------
+            /* -------------------------------------
+            * Combination 7: Horizontal Bottom Row X
+            * --------------------------------------
             *    O | X | O
             *   -----------
             *    O | O | X
+            *   -----------
+            *    X | X | X
+            */
+            board.MakeMove('X', 0, 0);
+            board.MakeMove('O', 0, 1);
+            board.MakeMove('O', 0, 2);
+            board.MakeMove('X', 1, 0);
+            board.MakeMove('O', 1, 1);
+            board.MakeMove('X', 1, 2);
+            board.MakeMove('X', 2, 0);
+            board.MakeMove('X', 2, 1);
+            board.MakeMove('O', 2, 2);
+
+            // Expect That X Is The Winner
+            Assert.True(board.IsWinner('X'));
+
+            // Expect That O Is Not The Winner
+            Assert.False(board.IsWinner('O'));
+
+            // Clear The Board
+            board.ClearBoard();
+
+            /* -------------------------------------
+            * Combination 8: Horizontal Bottom Row O
+            * --------------------------------------
+            *    X | O | X
+            *   -----------
+            *    X | X | O
+            *   -----------
+            *    O | O | O
             */
             board.MakeMove('O', 0, 0);
             board.MakeMove('X', 0, 1);
@@ -378,14 +378,14 @@ namespace TicTacToe.Tests
             // Clear The Board
             board.ClearBoard();
 
-            /* --------------------------------------
-            * Combination 9: Vertical Middle column X
-            * ---------------------------------------
+            /* -------------------------------------
+            * Combination 9: Horizontal Middle Row X
+            * --------------------------------------
+            *    O | O | X
+            *   -----------
+            *    X | X | X
+            *   -----------
             *    O | X | O
-            *   -----------
-            *    X | X | O
-            *   -----------
-            *    O | X | X
             */
             board.MakeMove('O', 0, 0);
             board.MakeMove('X', 0, 1);
@@ -406,14 +406,14 @@ namespace TicTacToe.Tests
             // Clear The Board
             board.ClearBoard();
 
-            /* ---------------------------------------
-            * Combination 10: Vertical Middle column O
-            * ----------------------------------------
+            /* --------------------------------------
+            * Combination 10: Horizontal Middle Row O
+            * ---------------------------------------
+            *    X | X | O
+            *   -----------
+            *    O | O | O
+            *   -----------
             *    X | O | X
-            *   -----------
-            *    O | O | X
-            *   -----------
-            *    X | O | O
             */
             board.MakeMove('X', 0, 0);
             board.MakeMove('O', 0, 1);
@@ -434,14 +434,14 @@ namespace TicTacToe.Tests
             // Clear The Board
             board.ClearBoard();
 
-            /* --------------------------------------
-            * Combination 11: Vertical Right column X
-            * ---------------------------------------
+            /* -----------------------------------
+            * Combination 11: Horizontal Top Row X
+            * ------------------------------------
+            *    X | X | X
+            *   -----------
             *    O | O | X
             *   -----------
-            *    X | O | X
-            *   -----------
-            *    O | X | X
+            *    O | X | O
             */
             board.MakeMove('O', 0, 0);
             board.MakeMove('O', 0, 1);
@@ -462,14 +462,14 @@ namespace TicTacToe.Tests
             // Clear The Board
             board.ClearBoard();
 
-            /* --------------------------------------
-            * Combination 12: Vertical Right column O
-            * ---------------------------------------
+            /* -----------------------------------
+            * Combination 12: Horizontal Top Row O
+            * ------------------------------------
+            *    O | O | O
+            *   -----------
             *    X | X | O
             *   -----------
-            *    O | X | O
-            *   -----------
-            *    X | O | O
+            *    X | O | X
             */
             board.MakeMove('X', 0, 0);
             board.MakeMove('X', 0, 1);
@@ -490,12 +490,12 @@ namespace TicTacToe.Tests
             // Clear The Board
             board.ClearBoard();
 
-            /* ----------------------------------
-            * Combination 13: Diagonal Top Left X
-            * -----------------------------------
-            *    X | X | O
+            /* -----------------------------------
+            * Combination 13: Diagonal Top Right X
+            * ------------------------------------
+            *    O | O | X
             *   -----------
-            *    O | X | O
+            *    X | X | O
             *   -----------
             *    X | O | X
             */
@@ -518,12 +518,12 @@ namespace TicTacToe.Tests
             // Clear The Board
             board.ClearBoard();
 
-            /* ----------------------------------
-            * Combination 14: Diagonal Top Left O
-            * -----------------------------------
-            *    O | O | X
+            /* -----------------------------------
+            * Combination 14: Diagonal Top Right O
+            * ------------------------------------
+            *    X | X | O
             *   -----------
-            *    X | O | X
+            *    O | O | X
             *   -----------
             *    O | X | O
             */
@@ -546,14 +546,14 @@ namespace TicTacToe.Tests
             // Clear The Board
             board.ClearBoard();
 
-            /* -----------------------------------
-            * Combination 15: Diagonal Top Right X
-            * ------------------------------------
-            *    O | O | X
+            /* ----------------------------------
+            * Combination 15: Diagonal Top Left X
+            * -----------------------------------
+            *    X | O | X
             *   -----------
             *    O | X | O
             *   -----------
-            *    X | O | X
+            *    O | O | X
             */
             board.MakeMove('O', 0, 0);
             board.MakeMove('O', 0, 1);
@@ -574,14 +574,14 @@ namespace TicTacToe.Tests
             // Clear The Board
             board.ClearBoard();
 
-            /* -----------------------------------
-            * Combination 16: Diagonal Top Right O
-            * ------------------------------------
-            *    X | X | O
+            /* ----------------------------------
+            * Combination 16: Diagonal Top Left O
+            * -----------------------------------
+            *    O | X | O
             *   -----------
             *    X | O | X
             *   -----------
-            *    O | X | O
+            *    X | X | O
             */
             board.MakeMove('X', 0, 0);
             board.MakeMove('X', 0, 1);
@@ -622,11 +622,11 @@ namespace TicTacToe.Tests
 
             // Board Is Full But No Winner Variation 1
             /*
-            *    X | O | X
+            *    X | X | O
             *   -----------
             *    O | O | X
             *   -----------
-            *    O | X | O
+            *    X | O | O
             */
             board.MakeMove('X', 0, 0);
             board.MakeMove('O', 0, 1);
@@ -646,11 +646,11 @@ namespace TicTacToe.Tests
 
             // Board Is Full But No Winner Variation 2
             /*
-            *    X | O | X
-            *   -----------
             *    X | O | O
             *   -----------
-            *    O | X | O
+            *    O | O | X
+            *   -----------
+            *    X | X | O
             */
             board.MakeMove('X', 0, 0);
             board.MakeMove('O', 0, 1);
@@ -670,11 +670,11 @@ namespace TicTacToe.Tests
 
             // Board Is Full But No Winner Variation 3
             /*
+            *    O | X | O
+            *   -----------
             *    X | X | O
             *   -----------
-            *    O | X | X
-            *   -----------
-            *    X | O | O
+            *    X | O | X
             */
             board.MakeMove('X', 0, 0);
             board.MakeMove('X', 0, 1);
@@ -694,11 +694,11 @@ namespace TicTacToe.Tests
 
             // Board Is Full But There Is a Winner
             /*
-            *    X | O | X
+            *    X | X | X
             *   -----------
             *    O | O | X
             *   -----------
-            *    O | X | X
+            *    X | O | O
             */
             board.MakeMove('X', 0, 0);
             board.MakeMove('O', 0, 1);

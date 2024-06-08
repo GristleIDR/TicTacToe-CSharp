@@ -26,11 +26,11 @@ namespace TicTacToe
 
             // Display the board with formatting adjustments
             Console.WriteLine("  Y\n" +
-                              "2 |  " + FormatCell(this.board[0, 0]) + " | " + FormatCell(this.board[0, 1]) + " | " + FormatCell(this.board[0, 2]) +
+                              "2 |  " + FormatCell(this.board[0, 2]) + " | " + FormatCell(this.board[1, 2]) + " | " + FormatCell(this.board[2, 2]) +
                               "\n  | -----------\n" +
-                              "1 |  " + FormatCell(this.board[1, 0]) + " | " + FormatCell(this.board[1, 1]) + " | " + FormatCell(this.board[1, 2]) +
+                              "1 |  " + FormatCell(this.board[0, 1]) + " | " + FormatCell(this.board[1, 1]) + " | " + FormatCell(this.board[2, 1]) +
                               "\n  | -----------\n" +
-                              "0 |  " + FormatCell(this.board[2, 0]) + " | " + FormatCell(this.board[2, 1]) + " | " + FormatCell(this.board[2, 2]) +
+                              "0 |  " + FormatCell(this.board[0, 0]) + " | " + FormatCell(this.board[1, 0]) + " | " + FormatCell(this.board[2, 0]) +
                               "\n  -------------- X\n" +
                               "     0   1   2");
         }
@@ -65,16 +65,16 @@ namespace TicTacToe
         public bool IsWinner(char p)
         {
             // Check For Horizontal Wins
-            if ((this.GetPosition(0, 0) == p && this.GetPosition(0, 1) == p && this.GetPosition(0, 2) == p) ||
-                (this.GetPosition(1, 0) == p && this.GetPosition(1, 1) == p && this.GetPosition(1, 2) == p) ||
-                (this.GetPosition(2, 0) == p && this.GetPosition(2, 1) == p && this.GetPosition(2, 2) == p))
+            if ((this.GetPosition(0, 0) == p && this.GetPosition(1, 0) == p && this.GetPosition(2, 0) == p) ||
+                     (this.GetPosition(0, 1) == p && this.GetPosition(1, 1) == p && this.GetPosition(2, 1) == p) ||
+                     (this.GetPosition(0, 2) == p && this.GetPosition(1, 2) == p && this.GetPosition(2, 2) == p))
             {
                 return true;
             }
             // Check For Vertical Wins
-            else if ((this.GetPosition(0, 0) == p && this.GetPosition(1, 0) == p && this.GetPosition(2, 0) == p) ||
-                     (this.GetPosition(0, 1) == p && this.GetPosition(1, 1) == p && this.GetPosition(2, 1) == p) ||
-                     (this.GetPosition(0, 2) == p && this.GetPosition(1, 2) == p && this.GetPosition(2, 2) == p))
+            else if ((this.GetPosition(0, 0) == p && this.GetPosition(0, 1) == p && this.GetPosition(0, 2) == p) ||
+                (this.GetPosition(1, 0) == p && this.GetPosition(1, 1) == p && this.GetPosition(1, 2) == p) ||
+                (this.GetPosition(2, 0) == p && this.GetPosition(2, 1) == p && this.GetPosition(2, 2) == p))
             {
                 return true;
             }
