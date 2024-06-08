@@ -41,19 +41,23 @@ namespace TicTacToe
             string player_1_username = Console.ReadLine();
 
             Console.WriteLine("\n" + player_1_username + ", Please Choose Your Symbol (X or O): ");
-            char player_1_symbol = Console.ReadLine().ToUpper()[0];
+            string player_1_symbol = Console.ReadLine().ToUpper();
 
             // Get Player 2 Username
             Console.WriteLine("\nPlayer 2: Please Select a Username: ");
             string player_2_username = Console.ReadLine();
 
             // Set Player 1 symbol
-            if (player_1_symbol != 'X' || player_1_symbol != 'O')
+            if (player_1_symbol == "X")
             {
                 player_1.SetSymbol('X');
+            } 
+            else if (player_1_symbol == "O")
+            {
+                player_1.SetSymbol('O');
             } else
             {
-                player_1.SetSymbol(player_1_symbol);
+                player_1.SetSymbol('X');
             }
 
             // Give Player 2 The Opposite Symbol
@@ -66,7 +70,7 @@ namespace TicTacToe
                 player_2.SetSymbol('X');
             }
 
-            // Set Player Selections in Objects
+            // Set Player Selections in Their Objects
             if (player_1_username == "")
             {
                 player_1.SetUsername("Player 1");
@@ -88,7 +92,7 @@ namespace TicTacToe
             Console.WriteLine("\nPlayer 1: " + player_1.GetUsername() + " - Symbol: " + player_1.GetSymbol());
             Console.WriteLine("Player 2: " + player_2.GetUsername() + " - Symbol: " + player_2.GetSymbol());
 
-            // Game Play
+            // Play Game Till a Winner or Draw
             while (this.game_status == Status.InProgress)
             {
                 if (this.current_player == 1)
@@ -121,6 +125,7 @@ namespace TicTacToe
                 this.SwitchPlayer();
                 this.UpdateCurrentGameStatus();
             }
+            this.PrintEndGame();
         }
         public void UpdateCurrentGameStatus()
         {
@@ -154,7 +159,24 @@ namespace TicTacToe
         }
         public void PrintEndGame()
         {
-
+            Console.WriteLine("\n--------------------------[ TicTacToe ]--------------------------");
+            
+            if (this.game_status == Status.Win)
+            {
+                if (this.current_player == 1)
+                {
+                    Console.WriteLine("Congratulations " + player_2.GetUsername() + " You Have Won!\n");
+                }
+                else
+                {
+                    Console.WriteLine("Congratulations " + player_1.GetUsername() + " You Have Won!\n");
+                }
+            }
+            else if (this.game_status == Status.Draw)
+            {
+                Console.WriteLine("The Game is a Draw!\n");
+            }
+            game_board.PrintBoard();
         }
     }
 }
